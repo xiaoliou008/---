@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="596.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.repair.RepairController">
+    <children>
+        <Pane layoutX="19.0" layoutY="79.0">
+            <children>
+                <VBox fx:id="relicVBox" alignment="CENTER" spacing="20.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="修复申请">
+                            <font>
+                                <Font size="50.0" />
+                            </font>
+                        </Text>
+                        <TableView fx:id="repairTable" prefHeight="200.0" prefWidth="562.0">
+                            <columns>
+                                <TableColumn prefWidth="75.0" text="C1" />
+                                <TableColumn prefWidth="75.0" text="C2" />
+                            </columns>
+                            <VBox.margin>
+                                <Insets bottom="20.0" />
+                            </VBox.margin>
+                        </TableView>
+                        <HBox alignment="CENTER">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="名称：">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets top="3.0" />
+                                    </HBox.margin>
+                                </Text>
+                                <TextField fx:id="relicNameTextField" promptText="全部" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="分类：">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets top="3.0" />
+                                    </HBox.margin>
+                                </Text>
+                                <ChoiceBox fx:id="relicTypeChoiceBox" prefHeight="22.0" prefWidth="160.0" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="时间：">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets top="3.0" />
+                                    </HBox.margin>
+                                </Text>
+                        <DatePicker fx:id="datePicker" prefHeight="22.0" prefWidth="160.0" />
+                            </children>
+                        </HBox>
+                  <CheckBox fx:id="checkBox" mnemonicParsing="false" onAction="#checkBoxHandler" text="所有时间">
+                     <VBox.margin>
+                        <Insets top="-10.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                        <Button mnemonicParsing="false" onAction="#queryBtnHandler" prefHeight="34.0" prefWidth="67.0" text="查询">
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
+        <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="账号">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#menuPasswordHandler" text="修改密码" />
+                        <MenuItem mnemonicParsing="false" onAction="#menuLogoutHandler" text="注销" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="帮助">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#menuAboutHandler" text="关于" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </children>
+</AnchorPane>

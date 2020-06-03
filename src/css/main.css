@@ -1,0 +1,21 @@
+/*.pane{*/
+/*    -fx-background-image: url("../icon/清明上河图.jpg");*/
+/*}*/
+/*.Pane{*/
+
+/*}*/
+/*.anchor-pane{*/
+/*    -fx-background-image: url("../icon/清明上河图.jpg");*/
+/*}*/
+/*.button{*/
+/*    -fx-background-image: url("../icon/清明上河图.jpg");*/
+/*    !*-fx-background-color: red;*!*/
+/*}*/
+.root{
+    -fx-background-image: url("../icon/清明上河图.jpg");
+    -fx-background-repeat: repeat;
+    /*-fx-background-size: 900 506;*/
+    -fx-background-position: center center;
+
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
