@@ -1,8 +1,11 @@
 package main.manager;
 
 import data.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -22,8 +25,14 @@ import java.io.File;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * 管理员界面的控制器
+ */
 public class ManagerController extends Controller {
     @FXML
     public VBox employeeVBox;
@@ -67,6 +76,7 @@ public class ManagerController extends Controller {
     private MenuItem itemDisplayRelic = new MenuItem("展出");
     private MenuItem itemRelicSetImage = new MenuItem("设置图片");
     private MenuItem itemRelicShowImage = new MenuItem("显示图片");
+    private MenuItem itemRelicStatisitcs = new MenuItem("统计");
 
     // 右键员工表格菜单
     private ContextMenu cmEmployee = new ContextMenu();
@@ -96,7 +106,7 @@ public class ManagerController extends Controller {
 //                new SeparatorMenuItem(), itemRepairRelic, itemDisplayRelic);
         cmRelicEdit.getItems().addAll(itemModifyRelic, itemAddRelic, itemDeleteRelic);
         cmRelicSet.getItems().addAll(itemRepairRelic, itemDisplayRelic);
-        cmRelicImage.getItems().addAll(itemRelicSetImage, itemRelicShowImage);
+        cmRelicImage.getItems().addAll(itemRelicSetImage, itemRelicShowImage, itemRelicStatisitcs);
         cmRelic.getItems().addAll(cmRelicEdit, cmRelicSet, cmRelicImage);
         relicTable.setContextMenu(cmRelic);
         itemModifyRelic.setOnAction(this::modifyItemHandler);        // 使用method reference 代替lambda表达式
@@ -106,6 +116,7 @@ public class ManagerController extends Controller {
         itemDisplayRelic.setOnAction(this::displayAddItemHandler);
         itemRelicSetImage.setOnAction(this::setImageHandler);
         itemRelicShowImage.setOnAction(this::showImageHandler);
+        itemRelicStatisitcs.setOnAction(this::showChartHandler);
 
         // 配置文物choice box
         Configure.configChoiceBox(relicTypeChoiceBox, RelicTypeSQL.getAll());
@@ -432,6 +443,21 @@ public class ManagerController extends Controller {
             datePicker.setDisable(true);
         } else {
             datePicker.setDisable(false);
+        }
+    }
+
+    public void showChartHandler(ActionEvent actionEvent){
+        try {
+            ObservableList<PieChart.Data> datalist = FXCollections.observableArrayList();
+            ArrayList<String> list = new ArrayList<>(Arrays.asList("陶瓷", "绘画", "书法", "铭刻", "青铜器"));
+            for (String s : list) {
+                PieChart.Data data = new PieChart.Data(s, RelicSQL.queryType(s));
+                datalist.add(data);
+            }
+            PieChart pieChart = new PieChart(datalist);
+            Dialog.showChartDialog("类别统计", pieChart);
+        } catch (SQLException e){
+            e.printStackTrace();
         }
     }
 }

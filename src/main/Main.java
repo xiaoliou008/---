@@ -3,9 +3,12 @@ package main;
 import data.Employee;
 import data.Relic;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
@@ -24,6 +27,9 @@ import mysql.MySQL;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * 程序的入口
+ */
 public class Main extends Application {
     private Stage stage, newStage;
 
@@ -63,7 +69,7 @@ public class Main extends Application {
 
         // 调试管理员界面
 //        changeScene("manager/manager.fxml", "管理员");
-//        managerLogin(new Employee("1", "刘静平", "ljp", "管理员"));
+        managerLogin(new Employee("1", "刘静平", "ljp", "管理员"));
         // 调试修复员
 //        changeScene("repair/repair.fxml", "修复员");
 //        employeeLogin(new Employee("2", "修复员", "xfy", "修复员"));
@@ -71,6 +77,16 @@ public class Main extends Application {
         // 调试对话框
 //        Dialog.showTextInput("default", "title");
 
+        // 调试饼图
+//        PieChart.Data d1 = new PieChart.Data("data1", 10);
+//        PieChart.Data d2 = new PieChart.Data("data2", 20);
+//        PieChart.Data d3 = new PieChart.Data("data3", 30);
+//        ObservableList<PieChart.Data> datalist = FXCollections.observableArrayList();
+//        datalist.add(d1);
+//        datalist.add(d2);
+//        datalist.add(d3);
+//        PieChart pieChart = new PieChart(datalist);
+//        Dialog.showChartDialog("饼图", pieChart);
     }
 
     /**

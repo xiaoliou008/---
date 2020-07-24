@@ -29,6 +29,7 @@ public class RelicSQL {
     private static String sql_insert = "INSERT INTO relic VALUES(?, ?, ?, ?, 0, 0, ?, ?, NULL)";
     private static String sql_queryName = "SELECT rname FROM relic WHERE rid = ?";
     private static String sql_setImage = "UPDATE relic SET image = ? WHERE rid = ?";
+    private static String sql_statistic = "SELECT COUNT(*) FROM relic, rtype WHERE relic.tid = rtype.tid AND tname = ?";
 
     /**
      * 查询所有的文物
@@ -179,6 +180,15 @@ public class RelicSQL {
         if(res.next()){
             return res.getString(1);
         } else return null;
+    }
+
+    public static int queryType(String type) throws SQLException {
+        PreparedStatement preparedStatement = MySQL.getConnection().prepareStatement(sql_statistic);
+        preparedStatement.setString(1, type);
+        ResultSet res = preparedStatement.executeQuery();
+        if(res.next()){
+            return res.getInt(1);
+        } else return 0;
     }
 
     public static void setImage(Relic relic, String path) throws SQLException {

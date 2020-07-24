@@ -1,5 +1,6 @@
 package main.util;
 
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -71,6 +72,16 @@ public class Dialog {
         javafx.scene.control.Dialog<Image> dialog = new javafx.scene.control.Dialog<>();
         dialog.setTitle(title);
         dialog.getDialogPane().setContent(new ImageView(image));
+        // 至少要加一个按钮，否则Dialog无法关闭
+        dialog.getDialogPane().getButtonTypes().add(new ButtonType("确认", ButtonBar.ButtonData.OK_DONE));
+        dialog.show();
+    }
+
+    // 显示饼图
+    public static void showChartDialog(String title, PieChart pieChart){
+        javafx.scene.control.Dialog<Image> dialog = new javafx.scene.control.Dialog<>();
+        dialog.setTitle(title);
+        dialog.getDialogPane().setContent(pieChart);
         // 至少要加一个按钮，否则Dialog无法关闭
         dialog.getDialogPane().getButtonTypes().add(new ButtonType("确认", ButtonBar.ButtonData.OK_DONE));
         dialog.show();
